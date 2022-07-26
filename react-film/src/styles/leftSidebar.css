@@ -1,6 +1,6 @@
 .leftSidebar {
   height: 100%;
-  width: 160px;
+  width: 170px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -12,9 +12,9 @@
 }
 
 .leftSidebar a {
-  padding: 6px 8px 6px 16px;
+  padding: 6px 8px 6px 23px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 22px;
   color: #919191;
   display: block;
   transition: 0.3s;
@@ -23,6 +23,12 @@
 .leftSidebar a:hover,
 .closebtn:hover {
   color: #f1f1f1;
+}
+
+/* active link */
+.leftSidebar .active {
+  color: #f1f1f1;
+  position: relative;
 }
 
 .closebtn {
@@ -38,7 +44,7 @@
   font-size: 30px;
   cursor: pointer;
   display: none;
-  position: absolute;
+  position: fixed;
   left: 10px;
   top: 5px;
 }

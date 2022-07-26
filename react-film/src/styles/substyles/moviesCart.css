@@ -1,6 +1,5 @@
-.film__cart {
-  width: 250px;
-  min-height: 350px;
+.movies__cart {
+  width: 240px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -8,37 +7,38 @@
   align-items: center;
   background: #13161D;
   border-radius: 5px;
+  border: 1px solid #919191;
   color: #f1f1f1;
 }
 
-.film__cart img {
-  width: 250px;
-  height: 350px;
+.movies__cart img {
+  width: 240px;
+  height: 360px;
   padding-bottom: 10px;
   border-radius: 5px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.film__cart h4 {
+.movies__cart h4 {
   text-align: center;
 }
 
-.film__cart p {
+.movies__cart p {
   padding: 5px;
   text-align: center;
 }
 
-.film__cart_genres {
+.movies__cart_genres {
   color: #919191;
 }
 
-.film__cart_rating {
+.movies__cart_rating {
   color: burlywood;
   margin-right: 10px;
 }
 
-.film__cart_bottom {
+.movies__cart_bottom {
   display: flex;
   height: 100%;
   width: 100%;

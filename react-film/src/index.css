@@ -15,6 +15,36 @@
   min-height: calc(100vh);
 }
 
+.movies_container {
+  margin-left: 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-items: center;
+  gap: 25px;
+}
+
+.btn_more_movies {
+  cursor: pointer;
+  grid-column: 1/-1;
+  color: #818181;
+  font-size: 20px;
+  margin: 30px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #818181;
+  transition: 0.3s;
+}
+
+.btn_more_movies:hover {
+  color: #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+@media screen and (max-width: 825px) {
+  .movies_container {
+    margin-left: 0;
+  }
+}
+
 .button {
   cursor: pointer;
   height: 45px;
