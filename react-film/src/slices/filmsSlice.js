@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { pending, setError } from "./fetchHelper";
 
-export const fetchFilms = createAsyncThunk("movies/fetchFilms", async function (_, { rejectWithValue }) {
+export const fetchFilms = createAsyncThunk("films/fetchFilms", async function (_, { rejectWithValue }) {
   try {
     const response = await fetch("https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM&page=1", {
       method: "GET",
@@ -10,17 +11,17 @@ export const fetchFilms = createAsyncThunk("movies/fetchFilms", async function (
       }
     });
     if (!response.ok) {
-      throw new Error("При загзузке произошла ошибка.");
+      throw new Error("При загзузке страницы произошла ошибка.");
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    rejectWithValue(error.message);
+    return rejectWithValue(error.message);
   }
 });
 
 export const fetchMoreFilms = createAsyncThunk(
-  "movies/fetchMoreMovies",
+  "films/fetchMoreMovies",
   async function (page, { rejectWithValue, dispatch }) {
     try {
       const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films?type=FILM&page=${page}`, {
@@ -31,12 +32,12 @@ export const fetchMoreFilms = createAsyncThunk(
         }
       });
       if (!response.ok) {
-        throw new Error("При загзузке произошла ошибка.");
+        throw new Error("При загзузке страницы произошла ошибка.");
       }
       const data = await response.json();
       dispatch(addNewFilms(data));
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -47,11 +48,6 @@ const initialState = {
   status: null
 };
 
-const setError = (state, action) => {
-  state.status = "rejected";
-  state.error = action.payload;
-};
-
 export const filmsSlice = createSlice({
   name: "films",
   initialState,
@@ -59,13 +55,12 @@ export const filmsSlice = createSlice({
     addNewFilms(state, action) {
       const { items } = action.payload;
       state.items = [...state.items, ...items];
+      state.status = "resolved";
     }
   },
   extraReducers: {
-    [fetchFilms.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
+    [fetchFilms.pending]: pending,
+    [fetchMoreFilms.pending]: pending,
     [fetchFilms.fulfilled]: (state, action) => {
       const { items } = action.payload;
       state.status = "resolved";
@@ -80,5 +75,6 @@ const { addNewFilms } = filmsSlice.actions;
 
 export const filmsList = (state) => state.films.items;
 export const status = (state) => state.films.status;
+export const error = (state) => state.films.error;
 
 export default filmsSlice.reducer;

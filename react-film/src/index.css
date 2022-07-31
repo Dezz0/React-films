@@ -7,7 +7,7 @@
 }
 
 #root {
-  background: #1B1818;
+  background: #1A191F;
 }
 
 .container {
@@ -16,11 +16,12 @@
 }
 
 .movies_container {
-  margin-left: 200px;
+  margin-left: 170px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-items: center;
   gap: 25px;
+  padding: 0 15px;
 }
 
 .btn_more_movies {

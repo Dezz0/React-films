@@ -1,0 +1,10 @@
+.search_result {
+  text-align: center;
+  grid-column: 1/-1;
+  color: #f1f1f1;
+  margin: 10px 0;
+}
+
+.search_result span {
+  color: #818181;
+}

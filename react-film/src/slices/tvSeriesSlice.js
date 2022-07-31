@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { pending, setError } from "./fetchHelper";
 
 export const fetchTVSeries = createAsyncThunk("tvSeries/fetchTVSeries", async function (_, { rejectWithValue }) {
   try {
@@ -10,12 +11,12 @@ export const fetchTVSeries = createAsyncThunk("tvSeries/fetchTVSeries", async fu
       }
     });
     if (!response.ok) {
-      throw new Error("При загзузке произошла ошибка.");
+      throw new Error("При загзузке страницы произошла ошибка.");
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    rejectWithValue(error.message);
+    return rejectWithValue(error.message);
   }
 });
 
@@ -31,12 +32,12 @@ export const fetchMoreTVSeries = createAsyncThunk(
         }
       });
       if (!response.ok) {
-        throw new Error("При загзузке произошла ошибка.");
+        throw new Error("При загзузке страницы произошла ошибка.");
       }
       const data = await response.json();
       dispatch(addNewTVSeries(data));
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -47,11 +48,6 @@ const initialState = {
   status: null
 };
 
-const setError = (state, action) => {
-  state.status = "rejected";
-  state.error = action.payload;
-};
-
 export const tvSeriesSlice = createSlice({
   name: "tvSeries",
   initialState,
@@ -59,13 +55,12 @@ export const tvSeriesSlice = createSlice({
     addNewTVSeries(state, action) {
       const { items } = action.payload;
       state.items = [...state.items, ...items];
+      state.status = "resolved";
     }
   },
   extraReducers: {
-    [fetchTVSeries.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
+    [fetchTVSeries.pending]: pending,
+    [fetchMoreTVSeries.pending]: pending,
     [fetchTVSeries.fulfilled]: (state, action) => {
       const { items } = action.payload;
       state.status = "resolved";
@@ -80,5 +75,6 @@ const { addNewTVSeries } = tvSeriesSlice.actions;
 
 export const tvSeriesList = (state) => state.tvSeries.items;
 export const status = (state) => state.tvSeries.status;
+export const error = (state) => state.tvSeries.error;
 
 export default tvSeriesSlice.reducer;

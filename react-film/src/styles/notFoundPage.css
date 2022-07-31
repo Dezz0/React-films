@@ -1,0 +1,18 @@
+.notfound_block_page {
+  text-align: center;
+}
+
+.notfound_block_page h2 {
+  color: #f1f1f1;
+  margin: 35px 0 20px 0;
+}
+
+.notfound_block_page a {
+  color: #818181;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.notfound_block_page a:hover {
+  color: #f1f1f1;
+}

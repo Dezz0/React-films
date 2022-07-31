@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { pending, setError } from "./fetchHelper";
 
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async function (_, { rejectWithValue }) {
   try {
@@ -10,12 +11,12 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async function
       }
     });
     if (!response.ok) {
-      throw new Error("При загзузке произошла ошибка.");
+      throw new Error("При загзузке страницы произошла ошибка.");
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    rejectWithValue(error.message);
+    return rejectWithValue(error.message);
   }
 });
 
@@ -31,12 +32,12 @@ export const fetchMoreMovies = createAsyncThunk(
         }
       });
       if (!response.ok) {
-        throw new Error("При загзузке произошла ошибка.");
+        throw new Error("При загзузке страницы произошла ошибка.");
       }
       const data = await response.json();
       dispatch(addNewMovies(data));
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -47,11 +48,6 @@ const initialState = {
   status: null
 };
 
-const setError = (state, action) => {
-  state.status = "rejected";
-  state.error = action.payload;
-};
-
 export const moviesSlice = createSlice({
   name: "movies",
   initialState,
@@ -59,13 +55,12 @@ export const moviesSlice = createSlice({
     addNewMovies(state, action) {
       const { items } = action.payload;
       state.items = [...state.items, ...items];
+      state.status = "resolved";
     }
   },
   extraReducers: {
-    [fetchMovies.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
+    [fetchMovies.pending]: pending,
+    [fetchMoreMovies.pending]: pending,
     [fetchMovies.fulfilled]: (state, action) => {
       const { items } = action.payload;
       state.status = "resolved";
@@ -80,5 +75,6 @@ const { addNewMovies } = moviesSlice.actions;
 
 export const moviesList = (state) => state.movies.items;
 export const status = (state) => state.movies.status;
+export const error = (state) => state.movies.error;
 
 export default moviesSlice.reducer;

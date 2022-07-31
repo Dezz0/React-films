@@ -8,7 +8,6 @@ export default function LeftSidebar() {
   }
   function openNav() {
     document.querySelector(".leftSidebar").style.width = "170px";
-    console.log(document.querySelector(".leftSidebar").width);
   }
 
   return (
