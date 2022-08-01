@@ -1,6 +1,6 @@
 .leftSidebar {
   height: 100%;
-  width: 170px;
+  width: 190px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -9,9 +9,21 @@
   overflow-x: hidden;
   padding-top: 20px;
   transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.leftSidebar a {
+.leftSidebar_header {
+  color: #f1f1f1;
+  display: block;
+  width: 190px;
+  box-sizing: border-box;
+  padding-left: 15px;
+  margin: 20px 0 20px 0;
+}
+
+.leftSidebar_top a {
   padding: 6px 8px 6px 23px;
   text-decoration: none;
   font-size: 22px;
@@ -20,13 +32,13 @@
   transition: 0.3s;
 }
 
-.leftSidebar a:hover,
-.closebtn:hover {
+.leftSidebar_top a:hover,
+.closebtn:hover,
+.leftSidebar_bottom a:hover {
   color: #f1f1f1;
 }
 
-/* active link */
-.leftSidebar .active {
+.leftSidebar_top .active {
   color: #f1f1f1;
   position: relative;
 }
@@ -41,12 +53,28 @@
 }
 
 .openbtn {
+  color: #818181;
   font-size: 30px;
   cursor: pointer;
   display: none;
   position: fixed;
-  left: 10px;
-  top: 5px;
+  left: 16px;
+  top: 10px;
+}
+
+.leftSidebar_bottom {
+  padding-bottom: 70px;
+  width: 190px;
+}
+
+.leftSidebar_bottom a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #818181;
+  height: 100%;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 825px) {
@@ -54,6 +82,11 @@
     width: 0;
     transition: 0.5s;
   }
+
+  .leftSidebar_header {
+    border-bottom: 1px solid #f1f1f1;
+  }
+
 
   .leftSidebar .closebtn {
     display: block;

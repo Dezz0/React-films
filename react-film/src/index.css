@@ -16,7 +16,7 @@
 }
 
 .movies_container {
-  margin-left: 170px;
+  margin-left: 190px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-items: center;
