@@ -1,0 +1,21 @@
+p,
+h2 {
+  grid-column: 1/-1;
+}
+
+h2 {
+  color: #f1f1f1;
+  margin: 30px 0;
+}
+
+p {
+  justify-self: start;
+  margin: 10px 0;
+  color: #818181;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+p:hover {
+  color: #f1f1f1;
+}

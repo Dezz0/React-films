@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addNewFilm } from "../slices/favoritesSlice";
 import { fetchStaff, fetchSinglePageFilm, singlePageFilm, staff, error } from "../slices/singlepageSlice";
 import "../styles/singlepage.css";
 import Countries from "./subcomponents/Countries";
@@ -24,6 +25,10 @@ export default function Singepage() {
     dispatch(fetchStaff(id));
   }, [dispatch, id]);
 
+  function handleClick() {
+    dispatch(addNewFilm(infoFilm));
+  }
+
   return (
     <div className="singlepage_container">
       <div className="singlepage_container_leftBar">
@@ -32,9 +37,16 @@ export default function Singepage() {
       <div className="singlepage_container_rigthBar">
         <h2 className="singlepage_container_nameRu">{infoFilm.nameRu}</h2>
         <p className="singlepage_container_name">{infoFilm.nameOriginal}</p>
-        <a className="singlepage_container_watch_btn" href={infoFilm.webUrl}>
-          Смотреть
-        </a>
+        <div className="singlepage_container_btns">
+          <a className="singlepage_container_watch_btn" href={infoFilm.webUrl}>
+            Смотреть
+          </a>
+          <img
+            src="https://img.icons8.com/office/30/000000/like--v1.png"
+            alt="heart-icon"
+            onClick={() => handleClick()}
+          />
+        </div>
         <p className="singlepage_container_year">
           <span>Год:</span> {infoFilm.year}
         </p>

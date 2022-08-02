@@ -30,6 +30,17 @@
   color: #818181;
 }
 
+.singlepage_container_btns {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.singlepage_container_btns img {
+  cursor: pointer;
+  height: 30px;
+}
+
 .singlepage_container_watch_btn {
   display: block;
   text-decoration: none;
@@ -37,7 +48,7 @@
   color: #f1f1f1;
   font-size: 17px;
   font-weight: 600;
-  margin: 15px 0;
+  margin-right: 30px;
   padding: 15px;
   width: 150px;
   border-radius: 8px;

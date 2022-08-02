@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import favoritesSlice from "../slices/favoritesSlice";
 import filmsSlice from "../slices/filmsSlice";
 import moviesSlice from "../slices/moviesSlice";
 import searchFilmSlice from "../slices/searchFilmSlice";
@@ -11,6 +12,7 @@ export const store = configureStore({
     films: filmsSlice,
     tvSeries: tvSeriesSlice,
     singlepage: singlepageSlice,
-    searchFilms: searchFilmSlice
+    searchFilms: searchFilmSlice,
+    favorites: favoritesSlice
   }
 });
