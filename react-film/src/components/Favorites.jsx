@@ -18,11 +18,13 @@ export default function Favorites() {
     <div className="movies_container">
       {moviesList.length !== 0 ? (
         <>
-          <p onClick={() => handleClick()}>Очистить весь список</p>
+          <p className="clear_all_btn" onClick={() => handleClick()}>
+            Очистить весь список
+          </p>
           {render}
         </>
       ) : (
-        <h2>Список пуст</h2>
+        <h2 className="list_info">Список пуст</h2>
       )}
     </div>
   );

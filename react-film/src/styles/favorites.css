@@ -1,14 +1,14 @@
-p,
-h2 {
+.clear_all_btn,
+.list_info {
   grid-column: 1/-1;
 }
 
-h2 {
+.list_info {
   color: #f1f1f1;
   margin: 30px 0;
 }
 
-p {
+.clear_all_btn {
   justify-self: start;
   margin: 10px 0;
   color: #818181;
@@ -16,6 +16,6 @@ p {
   transition: 0.3s;
 }
 
-p:hover {
+.clear_all_btn:hover {
   color: #f1f1f1;
 }
