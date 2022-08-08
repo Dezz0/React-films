@@ -18,7 +18,7 @@ export default function LeftSidebar() {
           <span href="/" className="closebtn" onClick={() => closeNav()}>
             x
           </span>
-          <NavLink to="/React-Snack/">Главная</NavLink>
+          <NavLink to="/React-films">Главная</NavLink>
           <NavLink to="/films">Фильмы</NavLink>
           <NavLink to="/tv-series">Сериалы</NavLink>
           <NavLink to="/favorites">Избранное</NavLink>

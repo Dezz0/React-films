@@ -14,7 +14,7 @@ export default function App() {
     <div className="container">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="React-Snack" element={<Main />} />
+          <Route path="React-films" element={<Main />} />
           <Route path="films" element={<Films />} />
           <Route path="tv-series" element={<TVSeries />} />
           <Route path="favorites" element={<Favorites />} />
